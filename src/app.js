@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 
 const app = express();
 
+const UserRoutes=  require('./routes/users');
+
 mongoose.Promise = global.Promise; 
 mongoose.connect('mongodb://localhost/rest-api-example',{useNewUrlParser: true,useUnifiedTopology: true
 }).then(db=> console.log('db is connected'))
@@ -19,9 +21,11 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 
 //routes
-
+app.use('./users',UserRoutes);
 
 //static files
+
+//error handlers
 
 
 //start the server
